@@ -1,0 +1,38 @@
+<section class="our-articles bg-light-theme section-padding ">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8">
+                <div class="full-width">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6 col-md-6" *ngFor="let item of blogpost | paginate: { itemsPerPage: 9, currentPage: page }">
+                            <article class="blog-item blog-item-box">
+                                <div class="blog-item-img">
+                                    <img class="blog-img" [src]="item.image[0]" [alt]="item.title">
+                                    <ul class="blog-item-badge">
+                                        <li *ngFor="let cat of getCategories(item.category) | slice:0:2"><a routerLink="/blog/cat/{{cat.id}}">{{cat.title}}</a> </li>
+                                    </ul>
+                                </div>
+                                <div class="blog-item-content">
+                                    <h5 class="blog-item-title"><a routerLink="/blog-details/{{item.id}}">{{item.title}}</a></h5>
+                                    <p>{{item.shortdesc}}</p>
+                                    <div class="blog-item-details">
+                                        <span class="blog-item-date"><i class="fas fa-calendar-week"></i> {{item.postdate}}</span>
+                                        <span><i class="fas fa-comment-dots"></i> {{item.reviews.length}}</span></div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination Start -->
+                <div class="custom-pagination pagination mb-md-40">
+                    <pagination-controls (pageChange)="page = $event" responsive="true" previousLabel="<" nextLabel=">">
+                    </pagination-controls>
+                </div>
+                <!-- Pagination End -->
+            </div>
+            <aside class="col-xl-3 col-lg-4">
+                <app-blog-sidebar></app-blog-sidebar>
+            </aside>
+        </div>
+    </div>
+</section>

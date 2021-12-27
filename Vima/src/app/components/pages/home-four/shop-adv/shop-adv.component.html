@@ -1,0 +1,16 @@
+<section class="list-adv2">
+    <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" *ngFor="let item of shopadv">
+			<div class="item-adv2 category-block fade-out-in" [ngClass]="item.id === 2 ? 'white-block' : ''" >
+				<a routerLink="/shop-details/1" class="adv-thumb-link">
+					<img [src]="item.image" [alt]="item.title">
+				</a>
+				<div class="banner-info text-center">
+					<h3 class="text-white title30 play-font font-italic">{{ item.title }}</h3>
+					<p class="desc text-white opaci">{{ item.description }}</p>
+					<a routerLink="/shop-details/1" class="btn btn-text btn-text-white mt-20">Shop Now</a>
+				</div>
+			</div>
+		</div>
+    </div>
+</section>

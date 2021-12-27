@@ -1,0 +1,357 @@
+<div *ngFor="let item of shopdetails">
+    <section class="section-padding  bg-theme-primary">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="shop-detail-image">
+						<div class="detail-slider">
+							<swiper [config]="settings" class="swiper-container gallery-top">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" *ngFor="let image of item.image">
+										<a href="#" class="popup">
+											<img [src]="image" class="img-fluid full-width" [alt]="item.title">
+										</a>
+										<div class="shop-type-tag">
+                                            <div class="product-label new type-tag" *ngIf="item.sale">
+                                                <span>Sale</span>
+                                            </div>
+                                            <div class="product-label discount type-tag" *ngIf="item.discount">
+                                                <span>{{item.discount}}%</span>
+                                            </div>
+										</div>
+									</div>
+								</div>
+								<!-- Add Arrows -->
+								<!-- Add Arrows -->
+								<div class="swiper-button-next swiper-button-white"></div>
+								<div class="swiper-button-prev swiper-button-white"></div>
+							</swiper>
+							<swiper [config]="settingsThumb" class="swiper-container gallery-thumbs ">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" *ngFor="let image of item.image">
+										<img [src]="image" class="img-fluid full-width" [alt]="item.title">
+									</div>
+								</div>
+								<!-- Add Arrows --> 
+                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+							</swiper>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="shop-detail-contents mb-md-40 mt-md-40">
+						<div class="shop-detail-content-wrapper">
+							<h6 class="text-custom-black">{{item.title}}</h6>
+						</div>
+						<div class="ratings d-flex mb-xl-20"> 
+                            <ngb-rating [max]="5" [(rate)]="item.rating" [readonly]="true">
+                                <ng-template let-fill="fill" let-index="index">
+                                    <span class="text-dark-white" [class.text-yellow]="fill === 100"><i
+                                            class="fas fa-star"></i></span>
+                                </ng-template>
+                            </ngb-rating>
+                            <div class="pro-review"> <span>{{item.reviews.length}} Reviews</span>
+                            </div>
+						</div>
+						<div class="price">
+							<h5 class="text-light-green price-tag">
+                                <span class="text-light-green price-tag mr-2">${{item.price * (100 -
+                                    item.discount) / 100 | number:'1.2-2'}}</span>
+                                <span class="fw-400 fs-14"
+                                    *ngIf="item.discount">${{item.price | number:'1.2-2'}}</span>
+                            </h5>
+						</div>
+						<div class="product-full-des mb-20">
+							<p class="mb-0">{{item.shortdesc}}</p>
+						</div>
+						<div class="availibity mt-20">
+							<p class="text-custom-black fw-600">Avability: 
+                                <span class="text-success ml-2" *ngIf="item.stock">In Stock</span>
+                                <span class="text-danger ml-2" *ngIf="!item.stock">Out Of Stock</span>
+                            </p>
+						</div>
+						<div class="quantity mb-xl-20">
+							<p class="text-custom-black mb-0 mr-2 fw-600">Qty:</p>
+							<div class="product-qty-input">
+                                <button class="minus-btn" type="button" name="button" (click)="decrement()"> <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="text" class="form-control form-control-qty text-center" name="name"
+                                value="{{counter}}" readonly>
+                                <button class="plus-btn" type="button" name="button" (click)="increment()"> <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+						</div>
+						<div class="shop-bottom">
+							<div class="shop-meta mt-20">
+								<p class="text-custom-black mb-0 fw-600">Categories:</p>
+								<ul class="list-inline ml-2">
+                                    <li class="list-inline-item"
+                                        *ngFor="let cat of getCategories(item.category) | slice:0:3">
+                                        <a routerLink="/shop/cat/{{cat.id}}">{{cat.title}}</a>
+                                    </li>
+								</ul>
+							</div>
+							<div class="shop-meta mt-20">
+								<p class="text-custom-black mb-0 fw-600">Tags:</p>
+								<ul class="list-inline ml-2">
+									<li class="list-inline-item"
+                                        *ngFor="let tag of getTags(item.tags) | slice:0:3">
+                                        <a routerLink="/shop/tag/{{tag.id}}">{{tag.title}}</a>
+                                    </li>
+								</ul>
+							</div>
+							<div class="product-btn mt-20"> 
+                                <button type="button" class="btn-solid with-line ml-2" *ngIf="item.stock"
+                                (click)="detailHandleAddToCart(item)">Add to Cart</button>
+                                <button type="button" class="btn-solid with-line ml-2" *ngIf="!item.stock"
+                                (click)="handleOutofStock()">Add to Cart</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="shop-detail-description-sec">
+						<div class="tabs">
+							<ul ngbNav #nav="ngbNav" class="nav nav-tabs">
+								<li [ngbNavItem]="1"> 
+                                    <a ngbNavLink>Description</a>
+                                    <ng-template ngbNavContent>
+                                        <div [innerHtml]="item.htmldesc"></div>
+                                    </ng-template>
+								</li>
+								<li [ngbNavItem]="2"> 
+                                    <a ngbNavLink>Reviews ({{item.reviews.length}})</a>
+                                    <ng-template ngbNavContent>
+                                        <!-- comments -->
+									<div class="comment-box p-relative">
+										<div id="comment-box">
+											<ul class="comments">
+												<li class="comment" *ngFor="let review of item.reviews">
+													<article *ngFor="let author of getAuthor(review.user)">
+														<div class="comment-avatar ">
+															<img [src]="author.image" class="rounded-circle" [alt]="author.name">
+														</div>
+														<div class="comment-content">
+															<div class="comment-meta">
+																<div class="comment-meta-header">
+																	<h6 class="text-color-secondary fw-500 author mb-3">{{author.name}}</h6>
+																	<div class="post-date">
+																		<div class="date bg-custom-black">{{review.commentdate}}</div>
+																	</div>
+																</div>
+																<div class="comment-meta-reply"> <a href="#" class="comment-reply-link btn-first red-btn text-custom-black">Reply</a>
+																</div>
+															</div>
+															<div class="comment">
+																<p>{{review.comment}}</p>
+															</div>
+														</div>
+													</article>
+													<ul class="children">
+														<li class="comment" *ngFor="let reply of review.replies">
+															<article *ngFor="let author of getAuthor(reply.user)">
+                                                                <div class="comment-avatar ">
+                                                                    <img [src]="author.image" class="rounded-circle" [alt]="author.name">
+                                                                </div>
+                                                                <div class="comment-content">
+                                                                    <div class="comment-meta">
+                                                                        <div class="comment-meta-header">
+                                                                            <h6 class="text-color-secondary fw-500 author mb-3">{{author.name}}</h6>
+                                                                            <div class="post-date">
+                                                                                <div class="date bg-custom-black">{{reply.commentdate}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="comment-meta-reply"> <a href="#" class="comment-reply-link btn-first red-btn text-custom-black">Reply</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="comment">
+                                                                        <p>{{reply.comment}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </article>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- comments -->
+                                    </ng-template>
+								</li>
+							</ul>
+                            <div [ngbNavOutlet]="nav"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!-- Related Products -->
+    <section class="section-padding shop-description">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-header-left title">
+						<h3 class="text-light-black header-title ">Related Items</h3>
+						<span class="fs-14">
+                <a routerLink="/shop-left">See all</a>
+							</span>
+					</div>
+				</div>
+				<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" *ngFor="let product of getProductByCategory(item.category) | slice:0:4">
+                    <div class="product-box mb-md-20">
+                        <div class="product-img">
+                            <a routerLink="/shop-details/{{product.id}}">
+                                <img [src]="product.image[0]" class="img-fluid full-width" [alt]="product.title">
+                            </a>
+                            <div class="product-badge">
+                                <div class="product-label new" *ngIf="product.sale">
+                                    <span>Sale</span>
+                                </div>
+                                <div class="product-label discount" *ngIf="product.discount">
+                                    <span>{{product.discount}}%</span>
+                                </div>
+                            </div>
+                            <div class="button-group">
+                                <a href="javascript:void(0)" placement="left" ngbTooltip="Add to wishlist"
+                                    (click)="handleAddToWishlist(product)"
+                                    [ngClass]="isProductInWishlist(product.id) ? 'd-none' : ''"><i class="pe-7s-like"></i></a>
+                                <a href="javascript:void(0)" placement="left" ngbTooltip="Remove to wishlist"
+                                    (click)="handleDeleteFromWishlist(product)" class="active"
+                                    [ngClass]="isProductInWishlist(product.id) ? '' : 'd-none'"><i class="pe-7s-like"></i></a>
+                                <a href="javascript:void(0)" placement="left" ngbTooltip="Quick View"
+                                    (click)="open(shopmodal, product)"><i class="pe-7s-search"></i></a>
+                            </div>
+                            <div class="cart-hover">
+                                <button type="button" class="btn-cart fw-600" *ngIf="product.stock"
+                                    (click)="handleAddToCart(product)">Add To
+                                    Cart</button>
+                                <button type="button" class="btn-cart fw-600" *ngIf="!product.stock"
+                                    (click)="handleOutofStock()">Add To
+                                    Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-caption text-center">
+                            <div class="product-status">
+                                <ul class="product-raised">
+                                    <li><strong>Distribute:</strong> {{product.sold | number:'1.0-0'}}</li>
+                                    <li><strong>Goal:</strong><span class="text-highlight"> {{product.goal |
+                                            number:'1.0-0'}}</span></li>
+                                </ul>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-color"
+                                        [style.width.%]="product.sold * 100 / product.goal"></div>
+                                </div>
+                            </div>
+                            <h6 class="product-title fw-500 mt-10"><a routerLink="/shop-details/{{product.id}}"
+                                    class="text-color-secondary">{{product.title}}</a></h6>
+                            <div class="product-money mt-10">
+                                <span class="text-light-green fw-600 fs-16">${{product.price * (100 - product.discount) / 100 |
+                                    number:'1.2-2'}}</span>
+                                <span class="text-price" *ngIf="product.discount">${{product.price | number:'1.2-2'}}</span>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- Modal -->
+<ng-template #shopmodal let-modal>
+    <div class="modal-body">
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')">×</button>
+        <!-- product details inner end -->
+        <div class="product-details-inner">
+            <div class="row">
+                <div class="col-lg-5 align-self-center">
+                    <div class="shop-detail-image">
+                        <div class="detail-slider">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a routerLink="/shop-details/{{modalContent.id}}" class="popup">
+                                            <img [src]="modalContent.image[0]" class="img-fluid full-width"
+                                                [alt]="modalContent.title">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="shop-detail-contents mb-md-40 mt-md-40">
+                        <div class="shop-detail-content-wrapper">
+                            <h3 class="text-custom-black">{{modalContent.title}}</h3>
+                        </div>
+                        <div class="ratings d-flex mb-xl-20">
+                            <ngb-rating [max]="5" [(rate)]="modalContent.rating" [readonly]="true">
+                                <ng-template let-fill="fill" let-index="index">
+                                    <span class="text-dark-white" [class.text-yellow]="fill === 100"><i
+                                            class="fas fa-star"></i></span>
+                                </ng-template>
+                            </ngb-rating>
+                            <div class="pro-review"> <span>{{modalContent.reviews.length}} Reviews</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <h4 class="text-custom-red price-tag">
+                                <span class="text-custom-red price-tag mr-2">${{modalContent.price * (100 -
+                                    modalContent.discount) / 100 | number:'1.2-2'}}</span>
+                                <span class="text-light-white fw-400 fs-14"
+                                    *ngIf="modalContent.discount">${{modalContent.price | number:'1.2-2'}}</span>
+                            </h4>
+                        </div>
+                        <div class="product-full-des mb-20">
+                            <p class="mb-0">{{modalContent.shortdesc}}</p>
+                        </div>
+                        <div class="availibity mt-20">
+                            <h6 class="text-custom-black fw-600">Avability: 
+                                <span class="text-success ml-2" *ngIf="modalContent.stock">In Stock</span>
+                                <span class="text-danger ml-2" *ngIf="!modalContent.stock">Out Of Stock</span>
+                            </h6>
+                        </div>
+                        <div class="quantity mb-xl-20">
+                            <h6 class="text-custom-black mb-0 mr-2 fw-600">Qty:</h6>
+                            <div class="product-qty-input">
+                                <button class="minus-btn" type="button" name="button" (click)="decrement()"> <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="text" class="form-control form-control-qty text-center" name="name"
+                                value="{{counter}}" readonly>
+                                <button class="plus-btn" type="button" name="button" (click)="increment()"> <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="shop-bottom">
+                            <div class="shop-meta mt-20">
+                                <h6 class="text-custom-black mb-0 fw-600">Categories:</h6>
+                                <ul class="list-inline ml-2">
+                                    <li class="list-inline-product"
+                                        *ngFor="let cat of getCategories(modalContent.category) | slice:0:3">
+                                        <a routerLink="/shop/cat/{{cat.id}}">{{cat.title}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="shop-meta mt-20">
+                                <h6 class="text-custom-black mb-0 fw-600">Tags:</h6>
+                                <ul class="list-inline ml-2">
+                                    <li class="list-inline-product"
+                                        *ngFor="let tag of getTags(modalContent.tags) | slice:0:3">
+                                        <a routerLink="/shop/tag/{{tag.id}}">{{tag.title}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="product-btn mt-20"> 
+                                <button type="button" class="btn-solid with-line ml-2" *ngIf="modalContent.stock"
+                                (click)="handlePopupAddToCart(modalContent)">Add to Cart <i class="pe-7s-cart"></i></button>
+                                <button type="button" class="btn-solid with-line ml-2" *ngIf="!modalContent.stock"
+                                (click)="handleOutofStock()">Add to Cart <i class="pe-7s-cart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- product details inner end -->
+    </div>
+</ng-template>

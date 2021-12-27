@@ -1,0 +1,17 @@
+<section class="service-type">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 bg-custom-primary" [ngClass]="item.extclass" *ngFor="let item of servicetype;let i = index">
+            <div class="service-box">
+                <div class="service-box-wrapper">
+                    <div class="service-icon-box">
+                        <img [src]="item.icon" [alt]="item.title" class="img-fluid">
+                    </div>
+                    <div class="service-text-box">
+                        <p>{{item.title}}</p>
+                        <h6>{{item.text}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

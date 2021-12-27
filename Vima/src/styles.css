@@ -1,0 +1,283 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~magnific-popup/dist/magnific-popup';
+@import url("https://unpkg.com/angular-calendar@0.28.24/css/angular-calendar.css");
+@import url("https://unpkg.com/flatpickr@4.6.6/dist/flatpickr.css");
+
+countdown .countdown {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+countdown .countdown .measurements {
+    background: white;
+    padding: 8px 9px;
+    border: 1px solid #4c283c;
+    border-radius: 4px;
+    text-align: center;
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    background: #4c283c;
+    width: 70px;
+    height: 70px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 0 0 1px rgb(67 41 163 / 8%), 0 1px 5px 0 rgb(67 41 163 / 8%);
+    margin-bottom: 15px;
+}
+countdown .countdown .measurements .measurements-number{
+    font-size: 26px;
+    line-height: 1;
+}
+countdown .countdown .measurements .measurements-text{
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: 0;
+}
+countdown.countdown-box.white .countdown .measurements {
+    text-align: center;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #D1A284;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    width: 100px;
+    height: 100px;
+    border-radius: 3px;
+    font-size: 28px;
+    font-weight: 600;
+    box-shadow: 0 0 0 1px rgb(67 41 163 / 8%), 0 1px 5px 0 rgb(67 41 163 / 8%);
+    flex: unset!important;
+    border: none;
+}
+countdown.countdown-box.white.mb-0 .countdown .measurements{
+    margin-bottom: 0;
+}
+countdown.white .countdown .measurements .measurements-text{
+    color: #000;
+}
+countdown.countdown-box.blue .countdown{
+    width: 100%;
+}
+countdown.countdown-box.blue .countdown .measurements {
+    padding: 5px 9px;
+    border: 1px solid #D1A284;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    background: #D1A284;
+    width: 50px;
+    height: 65px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 0 0 1px rgb(67 41 163 / 8%), 0 1px 5px 0 rgb(67 41 163 / 8%);
+    margin: 0 auto;
+    flex: unset!important;
+}
+countdown.countdown-box.blue .countdown .measurements .measurements-number{
+    font-size: 16px;
+}
+countdown.countdown-box.white .countdown .measurements .measurements-number{
+    font-size: 28px;
+}
+countdown.countdown-box.white .countdown .measurements .measurements-text{
+    font-size: 21px;
+}
+.paravideo-sec .video-sec .video-sec-left .video-sec-left-inner .upcoming-cam-timer countdown .countdown {
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.paravideo-sec .video-sec .video-sec-left .video-sec-left-inner .upcoming-cam-timer countdown .countdown .measurements:first-child{
+    margin-left: 0px;
+}
+.paravideo-sec .video-sec .video-sec-left .video-sec-left-inner .upcoming-cam-timer countdown .countdown .measurements:last-child{
+    margin-right: 0px;
+}
+.product-box .product-money span{
+    margin: 0 3px;
+}
+.side-shop .side-post:last-child, 
+.side-blog .side-post:last-child{
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border: none;
+}
+.side-shop .side-post .entry-tye span.text-price{
+    text-decoration: line-through;
+    color: gray;
+    margin-left: 6px;
+}
+.shop-detail-image .product-label{
+    left: auto;
+    right: 0;
+}
+.shop-detail-contents .price .price-tag+span{
+    text-decoration: line-through;
+    color: gray;
+}
+.side-shop .thumb-img a , .side-blog .thumb-img a{
+    width: 80px;
+    height: 80px;
+    display: block
+}
+.checkout-product .product-img img,
+.review-box .review-user .review-user-img img,
+.side-shop .thumb-img img, .side-blog .thumb-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.review-box .review-user .review-user-img img{
+    width: 40px;
+    height: 40px;
+}
+.checkout-product .product-img img{
+    width: 100px;
+    height: 100px;
+}
+/* Pagination */
+pagination-template .ngx-pagination {
+	margin-top: 0px;
+	justify-content: center;
+	margin-bottom: 0;
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+	border-radius: .25rem;
+}
+pagination-template .ngx-pagination li {
+	margin: 0;
+	position: relative;
+}
+pagination-template .ngx-pagination li.pagination-next,
+pagination-template .ngx-pagination li.pagination-previous {
+	padding: 0;
+	display: block;
+}
+pagination-template .ngx-pagination li.pagination-next span,
+pagination-template .ngx-pagination li.pagination-previous span,
+pagination-template .ngx-pagination li a {
+	border: #dee2e6 solid 1px;
+    background-color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 37px;
+    width: 50px;
+    display: flex;
+    line-height: 2;
+    text-align: center;
+    border-radius: 0%;
+    align-items: center;
+    justify-content: center;
+    color: #b7bdc5;
+}
+pagination-template .ngx-pagination li.current {
+	color: #fff!important;
+	border: #D1A284 solid 1px;
+	background-color: #D1A284;
+	font-size: 14px;
+    font-weight: 600;
+	margin: 0;
+	position: relative;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 37px;
+    width: 50px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	line-height: 2;
+	text-align: center;
+	border-radius: 0%;
+}
+pagination-template .ngx-pagination li.pagination-next::after,
+pagination-template .ngx-pagination li.pagination-next a:after,
+pagination-template .ngx-pagination li.pagination-previous a::before,
+pagination-template .ngx-pagination li.pagination-previous::before {
+	display: none!important;
+}
+.pagination-wrap ul li a:hover{
+    color: #fff!important;
+}
+/* Range slider */
+.ngx-slider .ngx-slider-bubble{
+    padding: 1px 6px!important;
+    color: #ffffff!important;
+    font-size: 14px!important;
+    background-color: #4c283c;
+    border-radius: 5px;
+}
+.ngx-slider .ngx-slider-bubble::after{
+    position: absolute;
+    display: block;
+    content: "";
+    bottom: -6px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -3px;
+    overflow: hidden;
+    border: 3px solid transparent;
+    border-top-color: #4c283c;
+}
+.ngx-slider .ngx-slider-bar{
+    background: #e1e4e9!important;
+    height: 2px!important;
+}
+.ngx-slider .ngx-slider-selection{
+    background: #4c283c!important;
+}
+.ngx-slider .ngx-slider-pointer:after {
+    display: none!important;
+}
+.ngx-slider .ngx-slider-pointer{
+    background-color: #4c283c!important;
+    width: 15px!important;
+    height: 15px!important;
+    top: -7px!important;
+}
+@media(max-width:992px){
+	.main-navigation{
+		overflow: auto;
+	}
+}
+.bg-cover{
+    background-size: cover;
+}
+.hm-list.hm-instagram li img{
+    width: 100%;
+}
+.product-box .product-caption .product-title a{
+    color: #4c283c;
+}
+.product-box .product-caption .product-title a:hover{
+    color: #D1A284;
+}
+.progress-bar{
+    overflow: visible;
+}
+.cal-month-view .cal-header .cal-cell{
+    background: #4c283c;
+    color: #fff;
+    padding: 15px 7px;
+    border-color: #898989;
+}
+.btn-solid.active{
+    background-color: #D1A284;
+}

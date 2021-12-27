@@ -1,0 +1,25 @@
+<swiper [config]="settings" class="about-us-slider swiper-container p-relative slider-banner-1">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide slide-item" *ngFor="let item of bannerdata">
+            <img [src]="item.image" class="img-fluid full-width" [alt]="item.subtitle">
+            <div class="transform-center z-index-3">
+                <div class="container-fluid custom-container">
+                    <div class="row justify-content-center">
+                        <div class="align-self-center" [ngClass]="item.position">
+                            <div [ngClass]="item.extraclass">
+                                <h5 class="text-white">{{item.subtitle}}</h5>
+                                <h1 class="text-white fw-600" [innerHtml]="item.title"></h1>
+                                <p class="text-white fw-400">{{item.text}}</p>
+                                <a routerLink="/shop-left" class="btn-solid with-line btn-big mt-20"><span>Explore More <i class="fas fa-caret-right"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay overlay-bg-dark overlay-bg-img"></div>
+        </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</swiper>

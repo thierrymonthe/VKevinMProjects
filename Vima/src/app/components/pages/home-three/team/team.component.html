@@ -1,0 +1,29 @@
+<section class="browse-cat bg-theme-primary section-padding">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header-left title">
+                    <h3 class="text-light-black header-title">People's Stories</h3>
+                    <span class="fs-16 align-self-center"><a routerLink="/story-grid">See All</a></span>
+                </div>
+            </div>
+            <div class="col-12">
+                <swiper [config]="settings" class="category-slider swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" *ngFor="let item of teamblock">
+                            <a routerLink="/story-details/{{item.id}}" class="categories">
+                                <div class="icon text-custom-white bg-light-green ">
+                                    <img [src]="item.image" class="rounded-circle" [alt]="item.name">
+                                </div> 
+                                <span class="text-light-black cat-name">{{item.name}},{{item.address}}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </swiper>
+            </div>
+        </div>
+    </div>
+</section>

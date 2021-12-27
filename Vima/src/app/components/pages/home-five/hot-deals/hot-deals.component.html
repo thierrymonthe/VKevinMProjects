@@ -1,0 +1,23 @@
+<section class="ex-collection section-padding">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header-left">
+                    <h3 class="text-light-black header-title title">Our Hot Deals</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12" *ngFor="let item of donationblock | slice:0:2">
+                <div class="story-wrapper">
+                    <img [src]="item.image" [alt]="item.title" class="full-width img-fluid mx-auto d-block">
+                    <div class="story-box-content story-content-wrapper">
+                        <span class="story-badge bg-custom-primary text-color-secondary" *ngFor="let cat of getCategories(item.category)">{{cat.title}}</span>
+                        <h4><a routerLink="/donation-details/{{item.id}}">{{item.title}}</a> </h4>
+                        <a routerLink="/donation-details/{{item.id}}" class="btn btn-text btn-text-white">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

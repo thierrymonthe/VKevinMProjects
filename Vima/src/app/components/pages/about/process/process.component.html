@@ -1,0 +1,21 @@
+<section class="section-padding how-it-works bg-theme-primary">
+    <div class="container">
+        <div class="section-header-style-2">
+            <h6 class="text-light-green sub-title">Our Process</h6>
+            <h3 class="text-light-black header-title">How Does It Work</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6" *ngFor="let item of workprocess;let i = index">
+                <div class="how-it-works-box" [ngClass]="item.arrowclass">
+                    <div class="how-it-works-box-inner"> <span class="icon-box">
+                            <img [src]="item.icon" [alt]="item.title">
+                            <span class="number-box">0{{1+i}}</span>
+                        </span>
+                        <h6>{{item.title}}</h6>
+                        <p>{{item.text}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

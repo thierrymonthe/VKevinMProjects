@@ -1,0 +1,126 @@
+<!-- footer -->
+<footer class="section-padding bg-light-theme pt-0 u-line bg-custom-primary">
+    <swiper [config]="settings" class="u-line instagram-slider swiper-container">
+        <ul class="hm-list hm-instagram swiper-wrapper">
+            <li class="swiper-slide" *ngFor="let item of instagram">
+                <a href="#">
+                    <img [src]="item.image" alt="instagram">
+                </a>
+                <div class="insta-icon">
+                    <div><i class="fab fa-instagram text-red-light"></i>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </swiper>
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-xl col-lg-4 col-md-4 col-sm-6">
+                <div class="footer-contact">
+                    <h6 class="text-custom-white">About Us</h6>
+                    <div class="logo mb-xl-20">
+                        <a href="#">
+                            <img src="assets/img/logo.png" class="img-fluid" alt="img">
+                        </a>
+                    </div>
+                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt</p>
+                </div>
+            </div>
+            <div class="col-xl col-lg-4 col-md-4 col-sm-6">
+                <div class="footer-links">
+                    <h6 class="text-custom-white">Useful Links</h6>
+                    <ul>
+                        <li><a routerLink="/" class="text-white fw-500">Home</a>
+                        </li>
+                        <li><a routerLink="/about" class="text-white fw-500">About Us</a>
+                        </li>
+                        <li><a routerLink="/blog-details/1" class="text-white fw-500">Blog</a>
+                        </li>
+                        <li><a routerLink="/donation-details/1" class="text-white fw-500">Donation</a>
+                        </li>
+                        <li><a routerLink="/story-details/1" class="text-white fw-500">Story</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl col-lg-4 col-md-4 col-sm-6">
+                <div class="footer-links">
+                    <h6 class="text-custom-white">My Account</h6>
+                    <ul>
+                        <li><a routerLink="/login" class="text-white fw-500">Login</a>
+                        </li>
+                        <li><a routerLink="/register" class="text-white fw-500">Signup</a>
+                        </li>
+                        <li><a routerLink="/wishlist" class="text-white fw-500">Wishlist</a>
+                        </li>
+                        <li><a routerLink="/checkout" class="text-white fw-500">Checkout</a>
+                        </li>
+                        <li><a routerLink="/cart" class="text-white fw-500"> Cart</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl col-lg-4 col-md-4 col-sm-6">
+                <div class="footer-links">
+                    <h6 class="text-custom-white">Other Links</h6>
+                    <ul>
+                        <li><a routerLink="/donation-details/1" class="text-white fw-500">Donation Detail</a>
+                        </li>
+                        <li><a routerLink="/story-details/1" class="text-white fw-500">Story Detail</a>
+                        </li>
+                        <li><a routerLink="/cart" class="text-white fw-500">Track Order</a>
+                        </li>
+                        <li><a routerLink="/blog-details/1" class="text-white fw-500">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl col-lg-4 col-md-4 col-sm-6">
+                <div class="footer-links">
+                    <h6 class="text-custom-white">Contact info</h6>
+                    <ul class="contact-info">
+                        <li>
+                            <a href="#" class="text-white"> <span><i class="pe-7s-timer"></i></span>
+                                Monday - Friday: 9:00 AM - 06:00 PM</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white"> <span><i class="pe-7s-mail"></i></span>
+                                info@example.com</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white"> <span><i class="pe-7s-call"></i></span>
+                                (+348) 123 456 7890</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white"> <span><i class="pe-7s-map-marker"></i></span>
+                                (+348) 123 456 7890</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="copyright bg-black">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="payment-logo mb-md-20">
+                    <div class="payemt-icon">
+                        <img src="assets/img/footer-bottom-img.png" alt="img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center medewithlove align-self-center"> <a href="#" class="text-custom-white">Made
+                    with Real <i class="fas fa-heart"></i> Yourwebsite</a>
+            </div>
+            <div class="col-lg-4">
+                <div class="copyright-text"> <span class="text-white">© <a href="#" class="text-white">Yourwebsite</a> -
+                        2021 | All Right Reserved</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->

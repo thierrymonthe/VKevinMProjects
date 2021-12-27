@@ -1,0 +1,33 @@
+<div class="side-bar">
+    <div class="main-box padding-20 side-blog mb-xl-20">
+        <h5 class="text-light-black">Recent Donation</h5>
+        <article class="side-post pb-xl-20 mb-xl-20 u-line" *ngFor="let item of recentProduct()">
+            <div class="thumb-img">
+                <a routerLink="/donation-details/{{item.id}}">
+                    <img [src]="item.image" [alt]="item.title">
+                </a>
+            </div>
+            <div class="content-wrap">
+                <div class="entry-meta-content">
+                    <h6 class="entry-title">
+                        <a routerLink="/donation-details/{{item.id}}" class="text-light-black">{{item.title}}</a>
+                    </h6>
+                    <div class="entry-tye"> <span class="text-light-white fw-400">{{item.postdate}}</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="main-box padding-20 blog-tags mb-xl-20">
+        <h5 class="text-light-black">Tags</h5>
+        <a routerLink="/donation/tag/{{item.id}}" *ngFor="let item of tags">#{{item.title}}</a>
+    </div>
+    <div class="main-box padding-20 trending-blog-cat mb-xl-20">
+        <h5 class="text-light-black">Categories</h5>
+        <ul>
+            <li class="pb-xl-20 u-line mb-xl-20" *ngFor="let item of category"> 
+                <a routerLink="/donation/cat/{{item.id}}" class="text-light-black fw-600">{{item.title}} <span class="text-light-white fw-400">({{item.count}})</span></a>
+            </li>
+        </ul>
+    </div>
+</div>

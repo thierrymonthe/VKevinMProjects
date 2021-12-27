@@ -1,0 +1,25 @@
+<div class="side-bar ">
+    <div class="main-box padding-20 side-blog mb-xl-20">
+        <h5 class="text-light-black">Peoples Story</h5>
+        <article class="side-post pb-xl-20 mb-xl-20 u-line" *ngFor="let item of recentPost()">
+            <div class="thumb-img">
+                <a routerLink="/story-details/{{item.id}}">
+                    <img [src]="item.image" [alt]="item.name">
+                </a>
+            </div>
+            <div class="content-wrap">
+                <div class="entry-meta-content">
+                    <h6 class="entry-title">
+                        <a routerLink="/story-details/{{item.id}}" class="text-light-black">{{item.title}}</a>
+                    </h6>
+                    <div class="entry-tye"> <span class="text-light-white fw-400">{{item.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="main-box padding-20 blog-tags mb-xl-20">
+        <h5 class="text-light-black">Tags</h5>
+        <a routerLink="/story/tag/{{item.id}}" *ngFor="let item of tags">#{{item.title}}</a>
+    </div>
+</div>

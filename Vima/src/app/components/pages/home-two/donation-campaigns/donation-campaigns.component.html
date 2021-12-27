@@ -1,0 +1,43 @@
+<section class="section-padding ex-collection bg-theme-primary">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header-left">
+                    <h3 class="text-light-black header-title title">Our Donation Campaigns</h3>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6" *ngFor="let item of donationblock | slice:0:4">
+                <div class="sa-causes-single sa-causes-single-2">
+                    <div class="entry-thumb">
+                        <img [src]="item.image" [alt]="item.title" class="img-fluid full-width">
+                        <div class="dontaion-category"><a routerLink="/donation/cat/{{cat.id}}" *ngFor="let cat of getCategories(item.category)">{{cat.title}}</a></div>
+                    </div>
+                    <div class="causes-details-wrap">
+                        <div class="causes-details">
+                            <h5><a routerLink="/donation-details/{{item.id}}">{{item.title}}</a></h5>
+                            <p>{{item.shortdesc}}</p>
+                            <div class="cause-progress">
+                                <div class="progress-bar" [style.width.%]="item.raised * 100 / item.goal">
+                                    <span>{{item.raised * 100 / item.goal | number:'1.0-0'}}%</span>
+                                </div>
+                            </div>
+                            <div class="causes-amount">
+                                <div class="left">
+                                    <p>Raised</p>
+                                    <span>${{item.raised | number:'1.2-2'}}</span>
+                                </div>
+                                <div class="right">
+                                    <p>Goal</p>
+                                    <span>${{item.goal | number:'1.2-2'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-area text-center">
+                        <a class="btn-donation text-btn" routerLink="/donation-details/{{item.id}}">donate now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

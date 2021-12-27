@@ -1,0 +1,30 @@
+<section class="feedback-area-two section-padding bg-custom-primary" [style.background-image]="'url(assets/img/footer-bg.png)'">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header-left text-center">
+                    <h3 class="text-white header-title">People Say About US</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <swiper [config]="settings" class="feedback-slider p-relative swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" *ngFor="let item of testimonials">
+                            <div class="feedback-item-two" *ngFor="let author of getAuthor(item.author)">
+                                <img [src]="author.image" [alt]="author.name">
+                                <p class="text-white fs-16">{{item.comment}}</p>
+                                <h5 class="text-white fw-600 no-margin">{{author.name}}</h5>
+                                <span class="text-white fw-400">{{author.address}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </swiper>
+            </div>
+        </div>
+    </div>
+</section>

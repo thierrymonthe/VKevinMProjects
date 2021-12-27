@@ -1,0 +1,135 @@
+<section class="our-articles bg-light-white section-padding" *ngFor="let item of donationdetails">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8">
+                <div class="main-box padding-20 full-width sa-causes-single sa-causes-single-2  mb-md-40">
+                    <div class="post-wrapper mb-xl-20">
+                        <div class="blog-item-img">
+                            <img [src]="item.image" class="img-fluid full-width" [alt]="item.title">
+                            <div class="dontaion-category"><a routerLink="/donation/cat/{{cat.id}}"
+                                    *ngFor="let cat of getCategories(item.category)">{{cat.title}}</a></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="blog-meta mb-xl-20">
+                                <h5 class="blog-title text-light-black">{{item.title}}</h5>
+                                <div class="cause-progress">
+                                    <div class="progress-bar" [style.width.%]="item.raised * 100 / item.goal">
+                                        <span>{{item.raised * 100 / item.goal | number:'1.0-0'}}%</span>
+                                    </div>
+                                </div>
+                                <div class="causes-amount">
+                                    <div class="left">
+                                        <p>Raised</p>
+                                        <span>${{item.raised | number:'1.2-2'}}</span>
+                                    </div>
+                                    <div class="right">
+                                        <p>Goal</p>
+                                        <span>${{item.goal | number:'1.2-2'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div [innerHtml]="item.htmldesc"></div>
+                            <hr>
+                            <div class="post-details-tags-social mb-xl-20">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-6">
+                                        <div class="tags-box">
+                                            <span class="fs-18 text-light-white"><i class="fas fa-tags"></i></span>
+                                            <div class="tags">
+                                                <a routerLink="/donation/tag/{{tag.id}}"
+                                                    *ngFor="let tag of getTags(item.tags)">{{tag.title}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="social-media-box">
+                                            <ul class="custom">
+                                                <li *ngFor="let social of socialShare(item.title)">
+                                                    <a href="javascript:void(0)" [ngClass]="social.iconstyle"
+                                                        (ngClick)="openSocialPopup(social)">
+                                                        <i [class]="social.iconClass"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-box">
+                                <div class="section-header-left">
+                                    <h6 class="text-light-black header-title">{{item.reviews.length}} Comments</h6>
+                                </div>
+                                <div *ngFor="let review of item.reviews">
+                                    <div class="review-box">
+                                        <div class="review-user" *ngFor="let author of getAuthor(review.user)">
+                                            <div class="review-user-img">
+                                                <img [src]="author.image" class="rounded-circle" [alt]="author.name">
+                                                <div class="reviewer-name">
+                                                    <p class="text-light-black fw-600">{{author.name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="review-date"> <span
+                                                    class="text-light-white">{{review.commentdate}}</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-light-black">{{review.comment}}</p>
+                                    </div>
+                                    <div class="review-box comment-reply" *ngFor="let reply of review.replies">
+                                        <div class="review-user" *ngFor="let author of getAuthor(reply.user)">
+                                            <div class="review-user-img">
+                                                <img [src]="author.image" class="rounded-circle" [alt]="author.name">
+                                                <div class="reviewer-name">
+                                                    <p class="text-light-black fw-600">{{author.name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="review-date"> <span
+                                                    class="text-light-white">{{reply.commentdate}}</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-light-black">{{reply.comment}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-form">
+                                <div class="section-header-left">
+                                    <h6 class="text-light-black header-title">Leave a Reply</h6>
+                                </div>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="text-light-black fw-600">Full Name</label>
+                                                <input type="text" name="#" class="form-control form-control-submit"
+                                                    placeholder="Full Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="text-light-black fw-600">Email Address</label>
+                                                <input type="email" name="#" class="form-control form-control-submit"
+                                                    placeholder="Email Address">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="text-light-black fw-600">Your Comment</label>
+                                                <textarea class="form-control form-control-submit" name="#" rows="6"
+                                                    placeholder="Your Comment"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn-second btn-submit full-width">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="col-xl-3 col-lg-4">
+                <app-donation-sidebar></app-donation-sidebar>
+            </aside>
+        </div>
+    </div>
+</section>

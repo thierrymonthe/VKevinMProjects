@@ -1,0 +1,196 @@
+<section class="section-padding our-product">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header-left">
+                    <h3 class="text-light-black header-title title">Our Featured Products</h3>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" *ngFor="let item of shopblock | slice:0:8">
+                        <div class="product-box mb-md-20">
+                            <div class="product-img">
+                                <a routerLink="/shop-details/{{item.id}}">
+                                    <img [src]="item.image[0]" class="img-fluid full-width" [alt]="item.title">
+                                </a>
+                                <div class="product-badge">
+                                    <div class="product-label new" *ngIf="item.sale">
+                                        <span>Sale</span>
+                                    </div>
+                                    <div class="product-label discount" *ngIf="item.discount">
+                                        <span>{{item.discount}}%</span>
+                                    </div>
+                                </div>
+                                <div class="button-group">
+                                    <a href="javascript:void(0)" placement="left" ngbTooltip="Add to wishlist"
+                                        (click)="handleAddToWishlist(item)"
+                                        [ngClass]="isProductInWishlist(item.id) ? 'd-none' : ''"><i class="pe-7s-like"></i></a>
+                                    <a href="javascript:void(0)" placement="left" ngbTooltip="Remove to wishlist"
+                                        (click)="handleDeleteFromWishlist(item)" class="active"
+                                        [ngClass]="isProductInWishlist(item.id) ? '' : 'd-none'"><i class="pe-7s-like"></i></a>
+                                    <a href="javascript:void(0)" placement="left" ngbTooltip="Quick View"
+                                        (click)="open(shopmodal, item)"><i class="pe-7s-search"></i></a>
+                                </div>
+                                <div class="cart-hover">
+                                    <button type="button" class="btn-cart fw-600" *ngIf="item.stock"
+                                        (click)="handleAddToCart(item)">Add To
+                                        Cart</button>
+                                    <button type="button" class="btn-cart fw-600" *ngIf="!item.stock"
+                                        (click)="handleOutofStock()">Add To
+                                        Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-caption text-center">
+                                <div class="product-status">
+                                    <ul class="product-raised">
+                                        <li><strong>Distribute:</strong> {{item.sold | number:'1.0-0'}}</li>
+                                        <li><strong>Goal:</strong><span class="text-highlight"> {{item.goal |
+                                                number:'1.0-0'}}</span></li>
+                                    </ul>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-color"
+                                            [style.width.%]="item.sold * 100 / item.goal"></div>
+                                    </div>
+                                </div>
+                                <h6 class="product-title fw-500 mt-10"><a routerLink="/shop-details/{{item.id}}"
+                                        class="text-color-secondary">{{item.title}}</a></h6>
+                                <div class="product-money mt-10">
+                                    <span class="text-light-green fw-600 fs-16">${{item.price * (100 - item.discount) / 100 |
+                                        number:'1.2-2'}}</span>
+                                    <span class="text-price" *ngIf="item.discount">${{item.price | number:'1.2-2'}}</span>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4">
+                <div class="large-product-box  p-relative">
+                    <div class="featured-product-box box-shadow">
+                        <div class="featured-pro-title">
+                            <h4 class="fs-22"><strong class="text-color-secondary"> Deal</strong> of The Week</h4>
+                        </div>
+                        <div class="featured-pro-content">
+                            <div class="featured-pro-text">
+                                <h6><a href="#"> Flower vase of imperial China</a></h6>
+                                <p>Lorem ipsum dolor sit amet, ctetur adipiscing elit, sed do eiusmod</p>
+                                <p class="price">$244</p>
+                            </div>
+                        </div>
+                        <div class="featured-pro-img">
+                            <img src="assets/img/shop/featured.jpg" alt="pro-img" class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="featured-pro-timer">
+                            <countdown  class="countdown-box blue" [text]="text" units="Days | Hours | Minutes | Seconds"  end="December 31, 2021"></countdown>
+                        </div>
+                        <div class="featured-pro-bottom">
+                            <ul>
+                                <li>Distribute: <strong>150000 </strong></li>
+                                <li>Goal: <strong>200000</strong> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal -->
+<ng-template #shopmodal let-modal>
+    <div class="modal-body">
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')">×</button>
+        <!-- product details inner end -->
+        <div class="product-details-inner">
+            <div class="row">
+                <div class="col-lg-5 align-self-center">
+                    <div class="shop-detail-image">
+                        <div class="detail-slider">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a routerLink="/shop-details/{{modalContent.id}}" class="popup">
+                                            <img [src]="modalContent.image[0]" class="img-fluid full-width"
+                                                [alt]="modalContent.title">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="shop-detail-contents mb-md-40 mt-md-40">
+                        <div class="shop-detail-content-wrapper">
+                            <h3 class="text-custom-black">{{modalContent.title}}</h3>
+                        </div>
+                        <div class="ratings d-flex mb-xl-20">
+                            <ngb-rating [max]="5" [(rate)]="modalContent.rating" [readonly]="true">
+                                <ng-template let-fill="fill" let-index="index">
+                                    <span class="text-dark-white" [class.text-yellow]="fill === 100"><i
+                                            class="fas fa-star"></i></span>
+                                </ng-template>
+                            </ngb-rating>
+                            <div class="pro-review"> <span>{{modalContent.reviews.length}} Reviews</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <h4 class="text-custom-red price-tag">
+                                <span class="text-custom-red price-tag mr-2">${{modalContent.price * (100 -
+                                    modalContent.discount) / 100 | number:'1.2-2'}}</span>
+                                <span class="text-light-white fw-400 fs-14"
+                                    *ngIf="modalContent.discount">${{modalContent.price | number:'1.2-2'}}</span>
+                            </h4>
+                        </div>
+                        <div class="product-full-des mb-20">
+                            <p class="mb-0">{{modalContent.shortdesc}}</p>
+                        </div>
+                        <div class="availibity mt-20">
+                            <h6 class="text-custom-black fw-600">Avability: 
+                                <span class="text-success ml-2" *ngIf="modalContent.stock">In Stock</span>
+                                <span class="text-danger ml-2" *ngIf="!modalContent.stock">Out Of Stock</span>
+                            </h6>
+                        </div>
+                        <div class="quantity mb-xl-20">
+                            <h6 class="text-custom-black mb-0 mr-2 fw-600">Qty:</h6>
+                            <div class="product-qty-input">
+                                <button class="minus-btn" type="button" name="button" (click)="decrement()"> <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="text" class="form-control form-control-qty text-center" name="name"
+                                value="{{counter}}" readonly>
+                                <button class="plus-btn" type="button" name="button" (click)="increment()"> <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div> 
+                        <div class="shop-bottom">
+                            <div class="shop-meta mt-20">
+                                <h6 class="text-custom-black mb-0 fw-600">Categories:</h6>
+                                <ul class="list-inline ml-2">
+                                    <li class="list-inline-item"
+                                        *ngFor="let cat of getCategories(modalContent.category) | slice:0:3">
+                                        <a routerLink="/shop/cat/{{cat.id}}">{{cat.title}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="shop-meta mt-20">
+                                <h6 class="text-custom-black mb-0 fw-600">Tags:</h6>
+                                <ul class="list-inline ml-2">
+                                    <li class="list-inline-item"
+                                        *ngFor="let tag of getTags(modalContent.tags) | slice:0:3">
+                                        <a routerLink="/shop/tag/{{tag.id}}">{{tag.title}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="product-btn mt-20"> 
+                                <button type="button" class="btn-solid with-line ml-2" *ngIf="modalContent.stock"
+                                (click)="handlePopupAddToCart(modalContent)">Add to Cart <i class="pe-7s-cart"></i></button>
+                                <button type="button" class="btn-solid with-line ml-2" *ngIf="!modalContent.stock"
+                                (click)="handleOutofStock()">Add to Cart <i class="pe-7s-cart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- product details inner end -->
+    </div>
+</ng-template>

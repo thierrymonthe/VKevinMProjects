@@ -1,0 +1,66 @@
+<section class="section-padding contact-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header-left title">
+                    <h3 class="text-light-black header-title">Get In Touch</h3>
+                </div>
+                <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+                    <div class="row clearfix">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-submit" name="name"
+                                [(ngModel)]="model.name" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" [(ngModel)]="model.email" class="form-control form-control-submit"
+                                    placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="subject"
+                                [(ngModel)]="model.subject" class="form-control form-control-submit"
+                                    placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="phone"
+                                [(ngModel)]="model.phone" class="form-control form-control-submit"
+                                    placeholder="Phone" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea name="message"
+                                [(ngModel)]="model.message" class="form-control form-control-submit"
+                                    placeholder="Message" required [style.height.px]="225"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn-solid with-line" type="submit">Send</button>
+                        </div>
+                        <!-- Form Messages -->
+                        <div class="col-md-12">
+                        <div class="service-error mt-4 w-100" *ngIf="error">
+                            <ngb-alert type="danger" class="mb-0 w-100" [dismissible]="false">
+                                <strong>Oops!</strong> Something bad happened. Please try again later.
+                            </ngb-alert>
+                        </div>
+                        <div [hidden]="!submitted" class="contact-message w-100 mt-4">
+                            <div *ngIf="model.id" class="contact-success w-100">
+                                <ngb-alert type="success" class="mb-0 w-100" [dismissible]="false">
+                                    <strong>Success!</strong> Contact form has been successfully submitted.
+                                </ngb-alert>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Form Messages -->
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+<div class="contact-map">
+    <iframe
+        src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" [style.height.px]="300"></iframe>
+</div>
